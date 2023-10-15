@@ -13,3 +13,10 @@ class SquareToCircle(Scene):
         self.play(Create(square))
         self.play(Transform(square, circle))
         self.play(FadeOut(square))
+
+
+class CameraIssue(MovingCameraScene):
+    def construct(self):
+        self.add(Square())
+        # To do - Fix the camera not rotating
+        self.play(self.camera.frame.animate.rotate(PI / 2))
