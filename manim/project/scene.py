@@ -1,22 +1,14 @@
+import numpy as np
+
 from manim import *
-
-
-class SquareToCircle(Scene):
-    def construct(self):
-        circle = Circle()
-        square = Square()
-        square.flip(RIGHT)
-        square.rotate(-3 * TAU / 8)
-        circle.set_fill(PINK, opacity=0.5)
-
-        self.play(Create(circle))
-        self.play(Create(square))
-        self.play(Transform(square, circle))
-        self.play(FadeOut(square))
 
 
 class CameraIssue(MovingCameraScene):
     def construct(self):
-        self.add(Square())
-        # To do - Fix the camera not rotating
-        self.play(self.camera.frame.animate.rotate(PI / 2))
+        square = Square()
+        triangle = Triangle()
+        square.set_fill(RED, opacity=0.5)
+        self.camera.frame.height = 4
+        self.camera.frame.aspect_ratio = 1
+        self.add(square)
+        self.play(self.camera.frame.animate.rotate(PI / 2, axis=[1.0, 3.0, 1.0]))
